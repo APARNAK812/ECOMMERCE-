@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from common.models import Customer
+from seller.models import Product
 
 # Create your views here.
 
@@ -10,7 +12,15 @@ def checkout(request):
     return render(request,'customer/checkout.html')
 
 def home(request):
-    return render(request,'customer/home.html')    
+    customer_details = Customer.objects.get(id = request.session['customer'])
+    products = Product.objects.all()
+    cname = customer_details.first_name + ' ' + customer_details.last_name
+    context = {
+        'name':cname,
+        'products':products
+
+    }
+    return render(request,'customer/home.html',context)    
 
 def myorders(request):
     return render(request,'customer/myorders.html')    

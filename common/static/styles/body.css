@@ -15,3 +15,8 @@
   width: 100px;
   background-color: linear-gradient(90deg,red 70%,white 30%);
 }
+.body4{
+  position: absolute;
+  left: 200px;
+  top : 200px;
+}

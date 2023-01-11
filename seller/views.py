@@ -24,14 +24,23 @@ def add_product(request):
 
 def home(request):
     seller_details = Seller.objects.get(id = request.session['seller'])
+    products = Product.objects.filter(seller_id = request.session['seller'])
     seller_pic = seller_details.seller_pic
     sname = seller_details.first_name + ' ' + seller_details.last_name
+    context = {
+        'seller':seller_details,   
+        'products' :products,
+        'name' : sname 
+         }
     
-    return render(request,'seller/home.html',{'name':sname, 'image':seller_pic})
+    return render(request,'seller/home.html',context)
      
 
 def product_catalogue(request):
-    return render(request,'seller/product catalogue.html')    
+    return render(request,'seller/product catalogue.html') 
+
+def master(request):
+    return render(request,'seller/master.html')   
 
 def profile(request):
     return render(request,'seller/profile.html')
@@ -43,4 +52,27 @@ def view_order(request):
     return render(request,'seller/view order.html')  
 
 def change_password(request):
-    return render(request,'seller/change password.html')        
+    error_msg = ''
+    success_msg = ''
+    if request.method  == "POST":
+        old_password = request.POST['old_password']
+        new_password = request.POST['new_password']
+        confirm_password = request.POST['confirm_password']
+        if new_password == confirm_password:
+            if len(new_password) > 8:
+                seller = Seller.objects.get(id = request.session['seller'])
+                if old_password == seller.password:
+                    seller.password = new_password
+                    seller.save()
+                    success_msg = 'updated successfully'
+                else:
+                    error_msg = 'Invalid password'    
+
+            else:
+                error_msg = 'Password should be minimum 8 characters'
+        
+        else :
+            error_msg = 'password does\'nt  match'
+    
+
+    return render(request,'seller/change password.html',{'error':error_msg,'success':success_msg})        

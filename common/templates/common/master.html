@@ -1,7 +1,5 @@
 {% load static %}
-
-    <div class="body1">
-    <!--NAV BAR START-->
+<!--NAV BAR START-->
 <nav class="navbar navbar-expand-lg nav1 fixed-top">
     <div class="container-fluid">
       <a class="navbar-brand text-success fs-10 " style="font-family: Georgia, 'Times New Roman', Times, serif;" href="#"><i class="fa-sharp fa-solid fa-couch"></i>E-FURNITURE</a>
@@ -15,35 +13,38 @@
           </form>
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'seller:home' %}"><i class="bi bi-house-fill"></i></a>
+            <a class="nav-link active" aria-current="page" href="{% url 'common:home' %}"><i class="bi bi-house-fill"></i></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'seller:add_product' %}">
-           <i class="bi bi-plus-square-fill text-dark"></i>Add product</a>
+            <a class="nav-link" href="{% url 'common:clogin' %}">
+            <i class="bi bi-person-square text-danger"></i>Customer Login</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'seller:password' %}">
-             <i class="bi bi-c-circle text-success"></i>Change Password </a>
+            <a class="nav-link" href="{% url 'common:csign' %}">
+          <i class="bi bi-person-square text-danger"></i>Customer Register</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'seller:catalogue' %}">
-            <i class="bi bi-c-circle-fill text-success"></i>Catalogue </a>
+            <a class="nav-link" href="{% url 'common:slogin' %}">
+         <i class="bi bi-person-plus-fill text-success"></i>Seller Login </a>
           </li>
           <li class="nav-item">
-             <a class="nav-link" href="{% url 'seller:profile' %}"> 
-         <i class="bi bi-person-plus-fill text-success"></i>Profile </a>
+            <a class="nav-link" href="{% url 'common:ssign' %}">
+          <i class="bi bi-person-square text-danger"></i>Seller Register</a>
           </li>
         </ul>
        </div>
     </div>
   </nav>
-  </div>
   <!--NAV BAR END-->
 
+{% block content %}
+{% endblock %}
 
-  {% block content %}
-  {% endblock %}
 
-
-  
- 
+  <!--FOOTER START-->
+  <div class="card text-center bg-dark">
+    <div class="card-footer text-muted">
+      2022 ECOM Inc,  All Rights Reserved. 
+    </div>
+  </div>
+  <!--FOOTER END-->

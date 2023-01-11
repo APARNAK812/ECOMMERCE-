@@ -6,7 +6,7 @@ urlpatterns=[
     path('checkout',views.checkout,name='check'),
     path('home',views.home,name='home'),
     path('myorders',views.myorders,name='orders'), 
-    path('productdetails',views.productdetails,name='details'), 
-    path('profile',views.profile,name='pro'),
+    path('productdetails/<int:pid>',views.productdetails,name='details'), 
+    path('profile',views.profile,name='profile'),
     path('mycart',views.mycart,name='cart'),
 ]

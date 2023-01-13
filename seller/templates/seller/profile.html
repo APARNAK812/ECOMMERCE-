@@ -3,150 +3,175 @@
 {% block content %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-FURNITURE</title>
     <link rel="stylesheet" href="{% static 'styles/body1.css' %}">
-    <link rel="stylesheet" href="{% static 'styles/form.css' %}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-    <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
+    <!-- <link rel="stylesheet" href="{% static 'styles/form.css' %}"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+     integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+     <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
 </head>
-
-<body class="body2">
-    <div class=" position-absolute top-50 start-0">
-
-        <div class="header">
-
-            <h1 class="modal-title fs-7 mb-3 text-warning" id="exampleModalToggleLabel">Personal Details</h1>
-
+<!-- <body style="background-image:linear-gradient(90deg,rgb(231, 158, 158)30%,rgb(210, 218, 154)70%);background-size: cover; width: 100%;height: 500px;"> -->
+    <body style="background-image:url(../../static/images/m10.jpeg); background-size: cover; background-position: center;">
+    <div class="container  text-primary" >
+      <div class="row mb-5 mt-5">
+        
+        <div class="col col-sm-10" >
+            <h3 class="text-danger">SELLER PROFILE</h3>
+          <img src="{% static 'images/pro.jpeg' %}" style="width: 200px;">
         </div>
+      </div> 
+      <div class="row mb-5">
+          <div class="col col-sm-2">
+           <h5>First Name : </h5>
+          </div>
+          <div class="col col-sm-5">
+          <input type="text" value="{{ profile.first_name }}">
+          </div>
+        </div> 
+        <div class="row mb-5">
+          <div class="col col-sm-2">
+            <h5>  Last Name :</h5>
+          </div>
+          <div class="col col-sm-5">
+            <input type="text" value="{{ profile.last_name }}">
+          </div>
+        </div> 
+        <div class="row mb-5">
+          <div class="col col-sm-2">
+            <h5>  Address :</h5>
+          </div>
+          <div class="col col-sm-5 ">
+            <input type="text" value="{{ profile.address }}">
+          </div>
+        </div> 
+        <div class="row mb-5">
+          <div class="col col-sm-2">
+            <h5>   Phone :</h5>
+          </div>
+          <div class="col col-sm-5 ">
+            <input type="text" value="{{ profile.phone }}">
+          </div>
+        </div> 
+        <div class="row mb-5">
+          <div class="col col-sm-2">
+            <h5>  Email :</h5>
+          </div>
+          <div class="col col-sm-5 ">
+            <input type="text" value="{{ profile.email }}">
+          </div>
+        </div> 
+        <div class="row mb-5 mt-5">
+        
+            <div class="col col-sm-10 text-center" >
+              <button type="submit" class="btn btn-danger">Update Profile</button>
+            </div>
+          </div> 
+      
 
-        <form>
-            <div class="row g-3">
-                <div class="col-md-6">
-                    <label for="inputEmail4" class="form-label text-success">First Name</label>
-                    <input type="text" class="form-control" id="inputEmail4">
-                </div>
-                <div class="col-md-6">
-                    <label for="inputPassword4" class="form-label text-success">Last Name</label>
-                    <input type="text" class="form-control" id="inputPassword4">
-                </div></div>
-                <div class="row g-3">
-                    <div class="col-12">
-                        <label for="inputAddress" class="form-label text-success">Email</label>
-                        <input type="email" class="form-control" id="inputAddress">
+</div>
+
+
+
+
+
+    <!-- <div class="container-fluid">
+        <div class="container text-center">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th>
+                            <div class="row mb-5 mt-5">
+
+                                <div class="col col-sm-10">
+                                    <h3 class="text-danger"> Customer Profile</h3>
+                                    <img src="{% static 'images/pro.jpeg' %}" style="width: 200px;">
+                                </div>
+                            </div>
+                        </th>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="row mb-5">
+                                <div class="col col-sm-5">
+                                    <h5>First Name : </h5>
+                                </div>
+                                <div class="col col-sm-5">
+                                    <h5> {{ profile.first_name }} </h5>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row mb-5">
+                                <div class="col col-sm-5">
+                                    <h5> Last Name :</h5>
+                                </div>
+                                <div class="col col-sm-5">
+                                    <h5> {{ profile.last_name }}</h5>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row mb-5">
+                                <div class="col col-sm-5">
+                                    <h5> Address :</h5>
+                                </div>
+                                <div class="col col-sm-5 ">
+                                    <h5> {{ profile.address }}</h5>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row mb-5">
+                                <div class="col col-sm-5">
+                                    <h5> Phone :</h5>
+                                </div>
+                                <div class="col col-sm-5 ">
+                                    <h5> {{ profile.phone }}</h5>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row mb-5">
+                                <div class="col col-sm-5">
+                                    <h5> Email :</h5>
+                                </div>
+                                <div class="col col-sm-5 ">
+                                    <h5> {{ profile.email }}</h5>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    
+                    <tr><td>
+                        <div class="row mb-5 mt-5">
+                    <div class="col col-sm-10">
+                        <button type="submit" class="btn btn-success">Update Profile </button>
                     </div>
-                </div>
-                <div class="row g-3">
-                <div class="col-12">
-                    <label for="inputAddress2" class="form-label text-success">Phone</label>
-                    <input type="phone" class="form-control" id="inputAddress2">
-                </div>
-            </div>
-            <div class="row g-3">
-                <div class="col-md-12">
-                    <label for="inputCity" class="form-label text-success">Message</label>
-                    <input type="text" class="form-control" id="inputCity">
-                </div>
-            </div>
+        </div></td></tr>
 
-        </form>
-    </div>
-    </div>
+        </tbody>
+        </table>
+
+    </table> -->
+        {% endblock %}
 
 
-    <!-- <div class="position-relative"> -->
-    <div class="position-absolute bottom-0 start-50">
-        <!-- <div class=" card text-center ms-auto"> -->
-        <div class="header">
 
-            <h1 class="modal-title fs-7 mb-3 text-warning" id="exampleModalToggleLabel">Shipping Address</h1>
 
-        </div>
 
-        <form>
-            <div class="row g-3">
-                <div class="col-md-6">
-                    <label for="inputEmail4" class="form-label text-success">First Name</label>
-                    <input type="text" class="form-control" id="inputEmail4">
-                </div>
 
-                <div class="col-md-6">
-                    <label for="inputPassword4" class="form-label text-success">Last Name</label>
-                    <input type="text" class="form-control" id="inputPassword4">
-                </div>
-            </div>
-            <div class="row g-3">
-                <div class="col-12">
-                    <label for="inputAddress" class="form-label text-success">Address</label>
-                    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-                </div>
-            </div>
-            <div class="row g-3">
-                <div class="col-12">
-                    <label for="inputAddress2" class="form-label text-success">Address 2</label>
-                    <input type="text" class="form-control" id="inputAddress2"
-                        placeholder="Apartment, studio, or floor">
-                </div>
-            </div>
-            <div class="row g-3">
-                <div class="col-md-12">
-                    <label for="inputCity" class="form-label text-success">City</label>
-                    <input type="text" class="form-control" id="inputCity">
-                </div>
-            </div>
-            <div class="row g-3">
-                <div class="col-md-12">
-                    <label for="inputState" class="form-label text-success">State</label>
-                    <select id="inputState" class="form-select">
-                        <option selected>Choose...</option>
-                        <option>Kerala</option>
-                        <option>Karnataka</option>
-                        <option>Tamil Nadu</option>
-                        <option>Goa</option>
-                    </select>
-                </div>
-            </div>
-            <div class="row g-3">
-                <div class="col-md-12">
-                    <label for="inputZip" class="form-label text-success">Zip</label>
-                    <input type="text" class="form-control" id="inputZip">
-                </div>
-            </div>
-            <div class="row g-3">
-                <div class="col-12">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="gridCheck">
-                        <label class="form-check-label" for="gridCheck">
-                            Check me out
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12">
-                <button type="submit" class="btn btn-primary">Save</button>
-            </div>
-        </form>
-
-    </div>
-      <!--FOOTER START-->
-  <!-- <div class="card text-center bg-dark">
-    <div class="card-footer text-muted">
-      2022 ECOM Inc,  All Rights Reserved. 
-    </div>
-  </div> -->
-  <!--FOOTER END-->
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-        crossorigin="anonymous"></script>
-
-</body>
-
-</html>
-{% endblock %}

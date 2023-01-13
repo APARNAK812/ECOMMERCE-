@@ -1,12 +1,112 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
-</html>
+{% extends "customer/master.html" %}
+{% load static %}
+{% block content %}
+
+
+
+<!-- <body style="background-image:linear-gradient(90deg,rgb(231, 158, 158)30%,rgb(151, 151, 237)70%);background-size: cover; width: 100%;height: 500px;"> -->
+
+<body style="background-image:url(../../static/images/m12.webp); background-size: cover;">
+    <div class="container-fluid">
+        <div class="container text-center">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th>
+                            <div class="row mb-5 mt-5">
+
+                                <div class="col col-sm-10">
+                                    <h3 class="text-danger"> Customer Profile</h3>
+                                    <img src="{% static 'images/pro.jpeg' %}" style="width: 200px;">
+                                </div>
+                            </div>
+                        </th>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="row mb-5">
+                                <div class="col col-sm-5">
+                                    <h5>First Name : </h5>
+                                </div>
+                                <div class="col col-sm-5">
+                                    <h5> {{ profile.first_name }} </h5>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row mb-5">
+                                <div class="col col-sm-5">
+                                    <h5> Last Name :</h5>
+                                </div>
+                                <div class="col col-sm-5">
+                                    <h5> {{ profile.last_name }}</h5>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row mb-5">
+                                <div class="col col-sm-5">
+                                    <h5> Address :</h5>
+                                </div>
+                                <div class="col col-sm-5 ">
+                                    <h5> {{ profile.address }}</h5>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row mb-5">
+                                <div class="col col-sm-5">
+                                    <h5> Phone :</h5>
+                                </div>
+                                <div class="col col-sm-5 ">
+                                    <h5> {{ profile.phone }}</h5>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row mb-5">
+                                <div class="col col-sm-5">
+                                    <h5> Email :</h5>
+                                </div>
+                                <div class="col col-sm-5 ">
+                                    <h5> {{ profile.email }}</h5>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    
+                    <tr><td>
+                        <div class="row mb-5 mt-5">
+                    <div class="col col-sm-10">
+                        <button type="submit" class="btn btn-success">Update Profile </button>
+                    </div>
+        </div></td></tr>
+
+        </tbody>
+        </table>
+
+        </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        {% endblock %}

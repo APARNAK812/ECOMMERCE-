@@ -26,12 +26,12 @@
 
 <br><br><br>
  <div class="row row-cols-1 row-cols-md-3 g-4">
-  <!-- product:variable ,products :datas from products -->
+  <!-- product:variable ,products :datas from products in dictionary -->
   {% for product in products %}   
     <div class="col">
       <div class="card">
         <a href="{% url 'customer:details' product.id %}">
-        <img src="{{ product.image.url }}" class="card-img-top" alt="..."></a>
+        <img src="{{ product.image.url }}" class="card-img-top"style="width:445px;height: 200px;"></a>
         <div class="card-body">
           <h5 class="card-title">{{ product.product_name }}</h5>
           <p class="card-text">{{ product.product_description }}</p>
@@ -44,5 +44,11 @@
     
   </div>
 
-
+    <!--FOOTER START-->
+    <div class="card text-center bg-dark">
+      <div class="card-footer text-muted">
+        2022 ECOM Inc,  All Rights Reserved. 
+      </div>
+    </div>
+    <!--FOOTER END-->
 {% endblock %}

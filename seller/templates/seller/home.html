@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-FURNITURE</title>
     <link rel="stylesheet" href="{% static 'styles/body1.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'styles/form.css' %}"> -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" 
      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
@@ -39,8 +40,8 @@
 <!-- <span> WELCOME  {{ name}}</span><br><br> -->
 
 <div _ngcontent-c15="">
-  <p _ngcontent-c15="" class="experience-heading trip_head"><b>Kashmir</b></p>
-  <p _ngcontent-c15="" class="desc"style="font-size: 30px;">Welcome {{name}}</p>
+  <p _ngcontent-c15="" class="desc text-center text-danger"
+ style="font-size: 100px; font-weight:bolder; text-shadow: 50px;">Welcome {{name}}</p>
 </div>
 <img src="{{ seller.seller_pic.url }}" height = "50px" width="100px">
 
@@ -49,7 +50,7 @@
   {% for product in products %}
     <div class="col">
       <div class="card">
-        <img src="{{ product.image.url }}" class="card-img-top" alt="...">
+        <img src="{{ product.image.url }}" class="card-img-top"style="width:445px;height: 200px;">
         <div class="card-body">
           <h5 class="card-title">{{ product.product_name }}</h5>
           <p class="card-text">{{ product.product_description }}</p>

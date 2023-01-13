@@ -9,4 +9,7 @@ urlpatterns=[
     path('productdetails/<int:pid>',views.productdetails,name='details'), 
     path('profile',views.profile,name='profile'),
     path('mycart',views.mycart,name='cart'),
+    path('get_total_amount',views.get_total_price,name='total_price'),
+    path('remove_cart/<int:cid>',views.remove_cart_item, name='remove_cart'),
+    path('logout',views.logout,name='logout')
 ]

@@ -1,8 +1,8 @@
 {% load static %}
 
-    <div class="body1">
+    <div class="sticky-top">
     <!--NAV BAR START-->
-<nav class="navbar navbar-expand-lg nav1 fixed-top">
+<nav class="navbar navbar-expand-lg nav1">
     <div class="container-fluid">
       <a class="navbar-brand text-success fs-10 " style="font-family: Georgia, 'Times New Roman', Times, serif;" href="#"><i class="fa-sharp fa-solid fa-couch"></i>E-FURNITURE</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,6 +20,10 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'seller:add_product' %}">
            <i class="bi bi-plus-square-fill text-dark"></i>Add product</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'seller:stocks' %}">
+           <i class="bi bi-plus-square-fill text-dark"></i>Update Stock</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'seller:password' %}">

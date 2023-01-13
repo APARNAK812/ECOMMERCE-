@@ -30,7 +30,8 @@
 .body2{
 background-image: url('../../static/images/m13.jpg');
 background-size: cover;
-
-
-
+}
+.body4{
+  background-image: url('../../static/images/m8.webp');
+  background-size: cover;
 }

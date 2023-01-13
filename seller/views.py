@@ -43,10 +43,12 @@ def master(request):
     return render(request,'seller/master.html')   
 
 def profile(request):
-    return render(request,'seller/profile.html')
+    seller_details = Seller.objects.get(id=request.session['seller'])
+    return render(request,'seller/profile.html',{'profile':seller_details})
 
 def update_stocks(request):
-    return render(request,'seller/update stocks.html')  
+    stocks = Product.objects.filter(seller_id = request.session['seller'])
+    return render(request,'seller/update stocks.html',{'stocks':stocks})  
 
 def view_order(request):
     return render(request,'seller/view order.html')  

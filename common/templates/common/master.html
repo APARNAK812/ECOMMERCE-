@@ -1,6 +1,22 @@
 {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-FURNITURE</title>
+    <link rel="stylesheet" href="{% static 'styles/form.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/body.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+     integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+     <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
+</head>
+<body>
 <!--NAV BAR START-->
-<nav class="navbar navbar-expand-lg nav1 fixed-top">
+<div class="sticky-top">
+<nav class="navbar navbar-expand-lg nav1 ">
     <div class="container-fluid">
       <a class="navbar-brand text-success fs-10 " style="font-family: Georgia, 'Times New Roman', Times, serif;" href="#"><i class="fa-sharp fa-solid fa-couch"></i>E-FURNITURE</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,16 +51,10 @@
        </div>
     </div>
   </nav>
+</div>
   <!--NAV BAR END-->
 
 {% block content %}
 {% endblock %}
 
 
-  <!--FOOTER START-->
-  <div class="card text-center bg-dark">
-    <div class="card-footer text-muted">
-      2022 ECOM Inc,  All Rights Reserved. 
-    </div>
-  </div>
-  <!--FOOTER END-->

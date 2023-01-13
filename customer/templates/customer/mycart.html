@@ -1,112 +1,120 @@
-
 {% extends "customer/master.html" %}
 {% load static %}
 {% block content %}
-<!-- <div class="position-absolute top-50 start-50 translate-middle"> -->
-  <div class="body4">
+
+<!-- 
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+      
+      <th scope="col">Product</th>
+      <th scope="col">Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Price</th>
     </tr>
   </thead>
   <tbody>
+    {% for item in items %} 
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
+      
+     
+      <td> <img src="{{ item.product.image.url }}" style="width:300px; height: 150px;"></td>
+      <td>{{ item.product.product_name }}</td>
+      <td>{{ item.product.product_description }}</td>
+      <td>{{ item.product.price }}</td>
+      
     </tr>
+    {% endfor %}
+  </tr> </tbody>
+</table> -->
+
+<h2 class="text-danger ms-5 mt-5">SHOPPING CART</h2>
+<table>
+  <thead>
+    {% for item in items %}
+
     <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
+      <div class="card mb-3 ms-5 mt-5" style="max-width: 840px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="{{ item.product.image.url }}" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">{{ item.product.product_name }}</h5>
+              <p class="card-text">{{ item.product.product_description }} <br> Household equipment, usually made of
+                wood, metal, plastics, marble, glass, fabrics, or related materials
+                and having a variety of different purposes</p>
+                <p class="card-text"> {{ item.product.price }}</p>
+              <input type="number" id="qty{{ forloop.counter }} " data-item="{{ item.product.id }}" min="1" value="1" max="{{ item.product.stock }}">Quantity
+              <p>Total price : <input type="text" class="total_amt" value="{{ item.product.price }}" readonly id="amt{{ item.product.id }}"> </p>
+              <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                <button type="submit" class="btn btn-success">Save for later</button>
+
+                <a href="{% url 'customer:remove_cart' item.id %}" class="btn btn-danger">Remove</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </tr>{% endfor %}
+
+
+    <div class="card text-end" style="width: 18rem;">
+      <div class="card-body">
+        <input type="text" id="grand_total">Total Amount : 
+
+      </div>
+    </div>
+    <div class="mx-auto text-center">
+      <button type="submit" class="btn btn-warning ">Place order</button>
+    </div>
+  </thead>
 </table>
-  </div>
-<!-- On tables -->
-<table class="table-primary">...</table>
-<table class="table-secondary">...</table>
-<table class="table-success">...</table>
-<table class="table-danger">...</table>
-<table class="table-warning">...</table>
-<table class="table-info">...</table>
-<table class="table-light">...</table>
-<table class="table-dark">...</table>
+<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
 
-<!-- On rows -->
-<tr class="table-primary">...</tr>
-<tr class="table-secondary">...</tr>
-<tr class="table-success">...</tr>
-<tr class="table-danger">...</tr>
-<tr class="table-warning">...</tr>
-<tr class="table-info">...</tr>
-<tr class="table-light">...</tr>
-<tr class="table-dark">...</tr>
+<script>
+$(document).ready(function(){
+  displayTotalAmount()
+  $.ajaxSetup({
+    headers: {
+      "X-CSRFToken": '{{ csrf_token }}'
+    }
+  })
+  $('input').change(function(){
+    let qty = $(this).val()
+    let pid = $(this).attr('data-item')
+    
+    $.ajax({
+      url : "{% url 'customer:total_price' %}",
+      data : {
+        'qty': qty,
+        'pid' : pid
+      },
+      method : 'POST',
+      success : function(response){
+        $('#amt' + pid).val(response.amount)
+        console.log(response.amount)
+        displayTotalAmount()
+      }
 
-<!-- On cells (`td` or `th`) -->
-<tr>
-  <td class="table-primary">...</td>
-  <td class="table-secondary">...</td>
-  <td class="table-success">...</td>
-  <td class="table-danger">...</td>
-  <td class="table-warning">...</td>
-  <td class="table-info">...</td>
-  <td class="table-light">...</td>
-  <td class="table-dark">...</td>
-</tr>
-<!-- <div class="body1">
-<div class="card mb-3" style="max-width: 540px;">
-    <div class="row g-0">
-      <div class="col-md-4">
-        <img src="{% static 'images/s1.jpg' %}" class="img-fluid rounded-start" alt="...">
-      </div>
-      <div class="col-md-8">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-        </div>
-      </div>
-    </div>
-  </div><br><br>
-  <div class="card mb-3" style="max-width: 540px;">
-    <div class="row g-0">
-      <div class="col-md-4">
-        <img src="{% static 'images/s1.jpg' %}" class="img-fluid rounded-start" alt="...">
-      </div>
-      <div class="col-md-8">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-        </div>
-      </div>
-    </div>
-  </div><br><br>
-  <div class="card mb-3" style="max-width: 540px;">
-    <div class="row g-0">
-      <div class="col-md-4">
-        <img src="{% static 'images/s1.jpg' %}" class="img-fluid rounded-start" alt="...">
-      </div>
-      <div class="col-md-8">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-        </div>
-      </div>
-    </div>
-  </div> -->
-  <!-- </div> -->
-  {% endblock %}
+    })
+  })
+})
+
+function displayTotalAmount(){
+ let amount_text = document.getElementsByClassName('total_amt')
+ let total = 0
+ for(let i = 0; i<amount_text.length; i++)
+ { 
+  total = total + parseInt(amount_text[i].value)
+
+ }
+ document.getElementById('grand_total').value = total
+ 
+}
+
+</script>
+
+{% endblock %}

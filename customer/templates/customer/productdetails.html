@@ -7,7 +7,9 @@
       <div class="col-md-4">
         <form method = 'POST'>
             {% csrf_token %}
+            <!-- <a href="{% url 'customer:cart' %}"> -->
         <img src="{{details.image.url}}" class="img-fluid rounded-start" alt="...">
+      <!-- </a> -->
       </div>
       <div class="col-md-8">
         <div class="card-body">
@@ -15,7 +17,7 @@
           <p class="card-text">{{details.product_description}}</p>
           <p class="card-text">{{details.price}}</p>
           <p class="card-text">{{details.seller.first_name}}</p>
-          <button type="submit">Add to Cart</button>
+          <button type="submit">Add to Cart </button>
           {{ message }}
         </form>
         </div>

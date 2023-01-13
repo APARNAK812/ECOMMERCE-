@@ -2,6 +2,8 @@ from django.shortcuts import render,redirect
 from common.models import Customer
 from seller.models import Product
 from .models import Cart
+from django.http import JsonResponse
+from .decorator import auth_customer
 
 
 # Create your views here.
@@ -38,6 +40,7 @@ def change_password(request):
 def checkout(request):
     return render(request,'customer/checkout.html')
 
+@auth_customer
 def home(request):
     customer_details = Customer.objects.get(id = request.session['customer'])
     products = Product.objects.all()
@@ -47,11 +50,13 @@ def home(request):
         'products':products
 
     }
-    return render(request,'customer/home.html',context)    
+    return render(request,'customer/home.html',context) 
 
+@auth_customer
 def myorders(request):
-    return render(request,'customer/myorders.html')    
+    return render(request,'customer/myorders.html') 
 
+@auth_customer
 def productdetails(request,pid):
     product_details = Product.objects.get(id = pid)
     msg = ''
@@ -68,10 +73,35 @@ def productdetails(request,pid):
 
     return render(request,'customer/productdetails.html',{'details':product_details,'message':msg})
     
-
+@auth_customer
 def profile(request):
-    return render(request,'customer/profile.html')   
+    customer_details = Customer.objects.get(id = request.session['customer'])
+    return render(request,'customer/profile.html',{'profile':customer_details}) 
 
+
+@auth_customer #to set the decorator
 def mycart(request): 
+    items = Cart.objects.filter(customer_id = request.session['customer'])
+    return render(request,'customer/mycart.html',{'items':items})     
 
-    return render(request,'customer/mycart.html')     
+
+
+def get_total_price(request):
+    pid = request.POST['pid'] #pid is the key passed from ajax request
+    qty = request.POST['qty']
+    product = Product.objects.filter(id = pid).values('price')
+    total_amount = int(qty) * product[0]['price'] 
+    print(total_amount)
+    return JsonResponse({'amount': total_amount})
+
+def remove_cart_item(request,cid):
+    item = Cart.objects.get(id = cid)
+    item.delete()
+    return redirect('customer:cart')
+
+def logout(request):
+    del request.session['customer'] 
+    request.session.flush()
+    return redirect('common:home')   
+      
+    

@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from common.models import Seller
 from .models import Product
+from django.http import JsonResponse
 
 # Create your views here.
 
@@ -46,9 +47,22 @@ def profile(request):
     seller_details = Seller.objects.get(id=request.session['seller'])
     return render(request,'seller/profile.html',{'profile':seller_details})
 
-def update_stocks(request):
-    stocks = Product.objects.filter(seller_id = request.session['seller'])
-    return render(request,'seller/update stocks.html',{'stocks':stocks})  
+def profile_update(request):
+    msg = ''
+    profile_update = Seller.objects.get(id = request.session['seller'])
+    if request.method  == "POST":
+        msg = 'updated successfully'
+        new_name = request.POST['new_name']
+        last_name = request.POST['last_name']
+        new_address = request.POST['address']
+        new_phone = request.POST['phone']
+        # image = request.FILES['image']
+        
+        Seller.objects.filter(id = request.session['seller']).update(first_name = new_name,last_name = last_name,address = new_address,phone = new_phone)
+    
+    return render(request,'seller/profile_update.html',{'profile_update':profile_update,'msg':msg}) 
+    
+
 
 def view_order(request):
     return render(request,'seller/view order.html')  
@@ -78,3 +92,24 @@ def change_password(request):
     
 
     return render(request,'seller/change password.html',{'error':error_msg,'success':success_msg})        
+
+
+def update_stocks(request):
+    product = Product.objects.filter(seller_id =request.session['seller'])
+    if request.method == 'POST':
+        prodid =request.POST['pid']
+        print(prodid)
+        new_stock =request.POST['new_stock']
+        product1 =Product.objects.get(id=prodid)
+        product1.stock += int(new_stock)
+        product1.save()
+    return render(request,'seller/update_stocks.html',{'products':product})
+
+
+
+def stock_number(request):
+    qty = request.POST['qty']
+    product = Product.objects.filter(id=qty).values('product_name','stock')
+    p_name = product[0]['product_name']
+    p_stock = product[0]['stock']
+    return JsonResponse({'pname':p_name,'pstock':p_stock})

@@ -22,7 +22,7 @@
         
         <div class="col col-sm-10" >
             <h3 class="text-danger">SELLER PROFILE</h3>
-          <img src="{% static 'images/pro.jpeg' %}" style="width: 200px;">
+          <img src="{{ profile.seller_pic.url }}" style="width: 200px;">
         </div>
       </div> 
       <div class="row mb-5">
@@ -68,7 +68,7 @@
         <div class="row mb-5 mt-5">
         
             <div class="col col-sm-10 text-center" >
-              <button type="submit" class="btn btn-danger">Update Profile</button>
+              <a href="{% url 'seller:profile_update' %}" class="btn btn-danger">Update Profile</a>
             </div>
           </div> 
       

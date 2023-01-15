@@ -22,19 +22,20 @@
       <!-- <div  class="position-absolute top-100 start-50 translate-middle formwidth"> -->
         <div class="modal-header">
           
-            <h1 class="modal-title fs-7 mb-3 text-danger" id="exampleModalToggleLabel">Add Product</h1>
+            <h1 class="modal-title fs-7 mb-3 text-danger" id="exampleModalToggleLabel">Stock Update</h1>
             
           </div>
       
     
-<form >
-    
+         
         <div class="row mb-3">
-          <label for="inputEmail3" name="category" class="col-sm-2 col-form-label text-danger">Select Product No:</label>
-          <div class="col-sm-6">
-            <select id="fur" name="category">
-                {% for stocks in stocks %}
-                <option value="volvo">{{ stocks.product_no }}</option>
+          <label for="inputEmail3"  class="col-sm-2 col-form-label text-danger">Select Product No:</label>
+          <div class="col-sm-6"> 
+            <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <select id="fur" name="pid" id="cid">
+                {% for product in products %}
+                <option value="{{ product.id }}">{{ product.product_no }}</option>
                 {% endfor %}
             </select>
           </div>
@@ -42,18 +43,20 @@
         <div class="row mb-3">
           <label for="inputPassword3"  class="col-sm-2 col-form-label text-danger">Product Name</label>
           <div class="col-sm-6">
-            <input type="text" name="product_name" class="form-control" id="inputPassword3">
+            <input type="text"  class="form-control" id="product_number">
           </div>
         </div>
         <div class="row mb-3">
             <label for="inputPassword3" class="col-sm-2 col-form-label text-danger">Current Stock</label>
             <div class="col-sm-6">
-              <input type="text" name="product_no"  class="form-control" id="inputPassword3">
+              <input type="text"   class="form-control" id="current_stock">
             </div></div>
+            <form method="POST">
+              {% csrf_token %}
         <div class="row mb-5">
                 <label for="inputPassword3" class="col-sm-2 col-form-label text-danger">New Stock</label>
                 <div class="col-sm-6">
-                  <input type="text" name="product_no"  class="form-control" id="inputPassword3">
+                  <input type="number" min="1"  name="new_stock"  class="form-control" id="inputPassword3">
                 </div> </div> 
                 <div> 
                 <button type="submit" class="btn btn-danger ">Submit</button>
@@ -62,10 +65,44 @@
       </div>
     </div>
     </div>
-
+</body></html>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
   
-  </body>
-  </html>
+    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+
+    <script>
+    $(document).ready(function(){
+      
+      $.ajaxSetup({
+        headers: {
+          "X-CSRFToken": '{{ csrf_token }}'
+        }
+      })
+      $('select').change(function(){
+        let qty = $(this).val()
+      
+        
+        $.ajax({
+          url : "{% url 'seller:stock_number' %}",
+          data : {
+            'qty': qty,
+            
+          },
+          method : 'POST',
+          success : function(response){
+            $('#product_number').val(response.pname) //$('#id name').val(response.key from views)
+            
+            $('#current_stock').val(response.pstock)
+           
+          }
+    
+        })
+      })
+    })
+    
+    
+    
+    </script>
+    
 {% endblock %}

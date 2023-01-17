@@ -1,0 +1,28 @@
+{% extends "ecom_admin/master.html" %}
+{% load static %}
+{% block content %}
+ 
+<body style="background-image:url('../../static/images/f6.jpg') ; background-size: cover;">
+
+  <h3 class="text-center">CUSTOMER DETAILS</h3>
+{% for customer in customer %}
+<div class="row mt-5">
+  
+    <div class="col">
+      <div class="card h-100 text-center" style="width:500px;height:200px;
+      background-color: rgb(208, 182, 232); border-radius: 500px;">
+       
+        <div class="card-body">
+          <h5 class="card-title">{{customer.first_name}}</h5>
+          <p class="card-text">{{customer.last_name}}</p>
+          <p class="card-text">{{customer.phone}}</p>
+          <p class="card-text">{{customer.email}}</p>
+        </div>
+      </div>
+    </div>
+{% endfor %}
+
+
+
+
+{% endblock %}

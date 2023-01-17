@@ -26,6 +26,7 @@ class Seller(models.Model):
     ifsc = models.CharField(max_length=10)
     account_no = models.CharField(max_length=15)
     seller_pic = models.ImageField(upload_to= 'seller/')
+    status = models.CharField(max_length=50,default='Pending')
     class Meta:
         db_table = 'seller_tb'
 

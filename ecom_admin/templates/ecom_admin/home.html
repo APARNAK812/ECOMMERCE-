@@ -1,12 +1,109 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+{% extends "ecom_admin/master.html" %}
+{% load static %}
+{% block content %}
+
+<style>
+    .vertical-scrollable>.row {
+        position: absolute;
+        top: 100px;
+        bottom: 90px;
+        left: 20px;
+        width: 20%;
+        overflow-y: scroll;
+    }
+    .col-sm-8 {
+        color: white;
+        font-size: 24px;
+        padding-bottom: 20px;
+        padding-top: 10px;
+    }
+    .col-sm-8:nth-child(2n+1) {
+        background: rgb(109, 127, 109);
+    }
+    .col-sm-8:nth-child(2n+2) {
+        background: rgb(214, 199, 199);
+    }
+</style>
 </head>
-<body>
-    <h1>WELCOME</h1>
-</body>
-</html>
+<body style="background-image:url('../../static/images/f6.jpg') ; background-size: cover;">
+
+    <!-- <div class="container">
+
+        <h1 style="color:rgb(181, 196, 181);">
+          
+        </h1>
+        <h3>
+        
+        </h3>
+        <div class="container vertical-scrollable">
+<div class="row text-center">
+    <div class="col-sm-8">
+        1
+      </div>
+    <div class="col-sm-8">
+        2
+      </div>
+    <div class="col-sm-8">
+        3
+      </div>
+    <div class="col-sm-8">
+        4
+      </div>
+    <div class="col-sm-8">
+        5   
+      </div>
+    <div class="col-sm-8">
+        6
+      </div>
+    <div class="col-sm-8">
+        7
+      </div>
+</div>
+</div>
+</div> -->
+<div class="container" style="margin-left:40px;margin-top:50px;">
+
+
+<div class="row mt-5">
+
+  <div class="col-sm-5" style="width: 500px;">
+    <div class="card text-center" >
+        <a class="nav-link" href="{% url 'ecom_admin:view_sell' %}">
+      <div class="card-body">
+        <h5 class="card-title">View Seller</h5>
+        <img src="{% static 'images/w4.webp' %}" style="width:300px; border-radius: 20px;">
+       
+      </div>
+    </div></a>
+  </div>
+  
+    <div class="col-sm-5 ms-4">
+      <div class="card text-center"><a class="nav-link" href="{% url 'ecom_admin:view_cus' %}">
+        <div class="card-body">
+          <h5 class="card-title">
+            View Customer</h5>
+            <img src="{% static 'images/e2.webp' %}" style="width:300px;">
+        </a> </div>
+      </div>
+    </div>
+    <div class="row mt-5">
+    <div class="col-sm-5">
+      <div class="card text-center"><a class="nav-link" href="{% url 'ecom_admin:view_product' %}">
+        <div class="card-body">
+          <h5 class="card-title">View Product</h5>
+          <img src="{% static 'images/e3.webp' %}" style="width:300px;">
+        </div>
+      </div></a>
+    </div> 
+    <div class="col-sm-5">
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title">
+            Approve seller</h5>
+          <img src="{% static 'images/e5.webp' %}" style="width:300px; border-radius: 20px;">
+        </div>
+      </div></a>
+    </div>
+</div>
+</div>
+{% endblock %}

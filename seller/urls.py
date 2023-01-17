@@ -13,5 +13,6 @@ urlpatterns=[
     path('master',views.master),
     path('change_password',views.change_password,name='password'),
     path('update_stocks',views.update_stocks,name='stocks'),
-    path('stock_number',views.stock_number,name='stock_number')
+    path('stock_number',views.stock_number,name='stock_number'),
+    path('logout',views.logout,name='logout')
 ]

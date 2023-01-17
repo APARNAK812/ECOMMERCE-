@@ -49,17 +49,25 @@ def profile(request):
 
 def profile_update(request):
     msg = ''
-    profile_update = Seller.objects.get(id = request.session['seller'])
+    
     if request.method  == "POST":
         msg = 'updated successfully'
         new_name = request.POST['new_name']
         last_name = request.POST['last_name']
         new_address = request.POST['address']
         new_phone = request.POST['phone']
-        # image = request.FILES['image']
+        image = request.FILES['image']
         
-        Seller.objects.filter(id = request.session['seller']).update(first_name = new_name,last_name = last_name,address = new_address,phone = new_phone)
-    
+        seller = Seller.objects.get(id =request.session['seller'])
+        # print(seller.id)
+        seller.seller_pic = image
+        seller.first_name = new_name
+        seller.last_name = last_name
+        seller.address = new_address
+        seller.phone = new_phone
+        # update = Seller(seller_pic = image,first_name = new_name,last_name = last_name,address = new_address,phone = new_phone)
+        seller.save()
+    profile_update = Seller.objects.get(id = request.session['seller'])
     return render(request,'seller/profile_update.html',{'profile_update':profile_update,'msg':msg}) 
     
 
@@ -113,3 +121,9 @@ def stock_number(request):
     p_name = product[0]['product_name']
     p_stock = product[0]['stock']
     return JsonResponse({'pname':p_name,'pstock':p_stock})
+    
+def logout(request):
+    del request.session['seller'] 
+    request.session.flush()
+    return redirect('common:home')   
+      

@@ -1,0 +1,59 @@
+{% extends "ecom_admin/master.html" %}
+{% load static %}
+{% block content %}
+
+
+
+<!-- <div class="row ">
+    <div class="col">
+      <div class="card h-100">
+       
+        <div class="card-body">
+          <h5 class="card-title">{{seller.first_name}}</h5>
+          <p class="card-text">{{seller.last_name}}</p>
+          <p class="card-text">{{seller.phone}}</p>
+          <p class="card-text">{{seller.email}}</p>
+          <img src="{{ seller.seller_pic.url }}" style="width: 200px;height: 150px;">
+        </div>
+      </div>
+    </div> -->
+    <table class="table">
+    <thead>
+      <tr class="table-warning mt-5">
+        <th scope="col">Id</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Address</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Email</th>
+        <th scope="col">Image</th>
+        <th scope="col">Status</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for seller in seller %}
+      <tr class="table-danger">
+        <th scope="row">{{seller.id}}</th>
+        <td>{{seller.first_name}}</td>
+        <td>{{seller.last_name}}</td>
+        <td>{{seller.address}}</td>
+        <td>{{seller.phone}}</td>
+        <td>{{seller.email}}</td>
+        <td><img src="{{seller.seller_pic.url}}"
+           style="width: 100px; height: 100px; border-radius: 50px;"></td>
+        <td class="text-danger">{{seller.status}}</td>
+        <td><a href="{% url 'ecom_admin:verify' seller.id %}" class="btn btn-success" style="border-radius: 20px;">APPROVE</button>
+          <button class="btn btn-danger" style="border-radius: 20px;">REJECT</button></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+
+
+
+
+
+
+{% endblock %}

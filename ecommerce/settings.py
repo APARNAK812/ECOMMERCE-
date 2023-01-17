@@ -140,7 +140,9 @@ EMAIL_USE_TLS = True
 
 STATICFILES_DIRS=[
     os.path.join(BASE_DIR,'customer/static'),
-    os.path.join(BASE_DIR,'common/static')
+    os.path.join(BASE_DIR,'common/static'),
+    os.path.join(BASE_DIR,'seller/static'),
+    os.path.join(BASE_DIR,'ecom_admin/static')
 ]
 
 # Default primary key field type
